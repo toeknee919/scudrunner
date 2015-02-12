@@ -68,7 +68,7 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
  		color: transparent;
 		text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
 	}
-	#all{
+	#all, #rep{
 		max-width: 600px;
 		width:95%;
 		font-size: 10px;
@@ -81,6 +81,7 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 		border-color: #33bbcc;
 		border-radius: 3px;
 		margin: 0 auto;
+		margin-bottom: 5px;
 
 	}
 	div.airportweather{
@@ -230,7 +231,7 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 	//*******************************************************************
 	//used for generating form to submit an airport report
 	//*******************************************************************
-	function generate_report_form(){
+/*	function generate_report_form(){
 			//clear the field
 			document.getElementById("reportForm").innerHTML = "";
 
@@ -245,7 +246,7 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
    			$("#reportForm").trigger("create");
    			window.scrollTo(0, document.body.scrollHeight);
 
-	}
+	}*/
 
 
 	//*******************************************************************
@@ -290,11 +291,28 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 
 	<!--Displays the metar/tafs-->
 	<div id="all"></div>
-	<br>
-	<input type="button" class="body-button" value="Report Conditions" onclick="generate_report_form()"/>
+	<div id = "rep"> 
+			<label>HERE ARE THE MOST RECENT AIRPORT COMMENTS</label><br> 
+				<?php 
+					$sql = mysql_query("SELECT * FROM airport_reports WHERE airport_id = 'BREN' ORDER BY time_added desc");
+					while ($row = mysql_fetch_array($sql)){
+						$sql2 = mysql_query("SELECT * FROM wx_user WHERE id='$row[submitter_id]' LIMIT 1");
+						$row2 = mysql_fetch_array($sql2);
+					echo "<div class='airportweather'>AT: " . $row['time_added'] . "<br>USER: " . $row2['username'] . "<br><tab>REMARK: " . $row['report_comment'] . "</div>";
+					}
+				?>
+		</div>
+	<!--<input type="button" class="body-button" value="Report Conditions" onclick="generate_report_form()"/>-->
 
-
-	<div id="reportForm"></div>
+	
+	<div id="reportForm">
+	<form action="report_upload.php" method="POST" name="wx_report_form" id="wx_report_form"  enctype="multipart/form-data">
+		Airport ID: <input type="text" maxlength="4" name="apt_report_id" id="apt_report_id" /><br>
+		Airport Comments: <textarea cols="40" rows="8" name="textarea-1" id="textarea-1" ></textarea>
+		<!--<br>Give us an image:<br><input type="file" name="pic" accept="image/*" ><br>-->
+		<input type="submit" name="submit_report" value="Submit Airport Report"/>
+	</form>
+	</div>
 </div>
 
 </body>
