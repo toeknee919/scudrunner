@@ -49,6 +49,7 @@
 			border-color: #33bbcc;
 		}
 		#fom{
+			color:white;
 			background-color: #555555;
 			text-shadow: none;
 			width:140px;
@@ -66,6 +67,7 @@
 		}
 		input#username, input#password{
 			width:120px;
+			color:black;
 		}
 		input[type=submit], input[type=button]{	
 			width:120px;

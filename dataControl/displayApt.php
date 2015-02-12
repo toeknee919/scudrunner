@@ -11,7 +11,8 @@
 
 
 $id = $_GET['airport'];
-
+//set the session variable for keeping the current airport id
+$_SESSION['apid'] = strtoupper($id);
 date_default_timezone_set('UTC');
 $output .= "Weather Loaded: " . date ('H:i F jS Y') . " GMT<br><br>";
 

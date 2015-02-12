@@ -1,5 +1,17 @@
 <?php session_start();
+/*
+Author: 	Anthony Hess
+File: 		new_wx.php
+Purpose: 	This is the main page for testing the weather bolding features. It calls
+			a php program "display2.php" which then retreives the weather reports for 
+			the airport identifiers listed in that file. That retreives these reports by 
+			calling a python script csvSearch.py which searches csv files on the system which contain the 
+			current weather reports that NOAA publishes. These reports come out every 5 minues and 
+			can be updated on the computer system by calling "load_CSV_met.py" or load_CSV_taf.py.
 
+
+*/
+			
 if(!isset($_SESSION['id'])){ 
 	header("Location: signin.php"); 
 	}
@@ -13,18 +25,7 @@ if(!isset($_SESSION['id'])){
     //Connect to the database 
     mysql_select_db($dbDatabase, $db)or die("Couldn't select the database.");
 ?>
-<!--
-Author: 	Anthony Hess
-File: 		new_wx.php
-Purpose: 	This is the main page for testing the weather bolding features. It calls
-			a php program "display2.php" which then retreives the weather reports for 
-			the airport identifiers listed in that file. That retreives these reports by 
-			calling a python script csvSearch.py which searches csv files on the system which contain the 
-			current weather reports that NOAA publishes. These reports come out every 5 minues and 
-			can be updated on the computer system by calling "load_CSV_met.py" or load_CSV_taf.py.
 
-
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +69,7 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
  		color: transparent;
 		text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
 	}
-	#all, #rep{
+	#all, #lep{
 		max-width: 600px;
 		width:95%;
 		font-size: 10px;
@@ -82,6 +83,34 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 		border-radius: 3px;
 		margin: 0 auto;
 		margin-bottom: 5px;
+	}
+	#lep{
+		max-width: 600px;
+		width:95%;
+		font-size: 10px;
+		background-color: #555555;
+		color:#ffffff;
+		font:sans-serif;
+		text-shadow: none;
+		padding: 3px;
+		border:1px solid;
+		border-color: #33bbcc;
+		border-radius: 3px;
+		margin: 0 auto;
+		margin-bottom: 5px;
+	}
+	#rep{
+		max-width: 600px;
+		font-size: 10px;
+		background-color: #555555;
+		color:#ffffff;
+		font:sans-serif;
+		text-shadow: none;
+		border:3px solid;
+		border-color: #555555;
+		border-radius: 3px;
+		margin: 0 auto;
+
 
 	}
 	div.airportweather{
@@ -163,6 +192,15 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 	// while the window loads, metars and tafs will be edited then loaded
 	//*******************************************************************
 	window.onload = function(){
+		
+		//check if session started to reload the last weather requested (set inside displayApt.php)
+		var a = "<?php echo $_SESSION['apid'];?>";
+		if(a != null){
+			Airport(a);
+		}
+
+		//load the default page
+		else{
 		var all;
 	   $.ajax({
 	      url:'dataControl/display2.php',
@@ -188,6 +226,8 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 	          $('#all').html('Bummer: there was an error!');
 	      }
 	  });
+	}
+
 	}
 	//*******************************************************************
 	//used to get weather from another airport
@@ -215,6 +255,7 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 			
 	        all = boldline(all, wx_lim, apt_rep);
 	        document.getElementById("all").innerHTML = all;
+	        $('#rep').load(document.URL +  ' #rep');
 	      },
 
 	      error: function () {
@@ -291,10 +332,14 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 
 	<!--Displays the metar/tafs-->
 	<div id="all"></div>
-	<div id = "rep"> 
-			<label>HERE ARE THE MOST RECENT AIRPORT COMMENTS</label><br> 
+
+	<!--Displays user reports for specified airport-->
+	<div id ="lep">
+		<div id = "rep"> 
+			<label>HERE ARE THE MOST RECENT AIRPORT COMMENTS FOR: <?php echo $_SESSION['apid'];?></label><br> 
 				<?php 
-					$sql = mysql_query("SELECT * FROM airport_reports WHERE airport_id = 'BREN' ORDER BY time_added desc");
+					$_SESSION['apid'];
+					$sql = mysql_query("SELECT * FROM airport_reports WHERE airport_id = '$_SESSION[apid]' ORDER BY time_added desc");
 					while ($row = mysql_fetch_array($sql)){
 						$sql2 = mysql_query("SELECT * FROM wx_user WHERE id='$row[submitter_id]' LIMIT 1");
 						$row2 = mysql_fetch_array($sql2);
@@ -302,6 +347,7 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 					}
 				?>
 		</div>
+	</div>
 	<!--<input type="button" class="body-button" value="Report Conditions" onclick="generate_report_form()"/>-->
 
 	
