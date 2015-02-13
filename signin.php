@@ -26,13 +26,23 @@
    			max-width: 600px;
     		background-color: #555555;
     		margin: 0 auto;
-    		border: 8px solid;
+    		border: 3px solid;
 			border-color: #33bbcc;
 		}
 
-		#headder,h1,h3{
+		#headder{
+			background: linear-gradient(#333, #3f3f3f, #fff);
 			color:#33bbcc;
 			text-shadow:0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
+			text-align: center;
+			max-width: 600px;
+			height:100px;
+
+		}
+		h1,h3{
+			color:#33bbcc;
+			margin:0;
+			background: transparent;
 			text-align: center;
 			max-width: 600px;
 		}
@@ -41,12 +51,10 @@
 			min-height:100%;
 			max-width: 600px;
 			font-size: 15px;
-			background-color: #555555;
-			color:#ffffff;
+			background: linear-gradient(#c2c2c2, #d3d2d2, #8c8a8a);
+			color:#000000;
 			font:sans-serif;
 			text-shadow: none;
-			border-top: 8px solid;
-			border-color: #33bbcc;
 		}
 		#fom{
 			color:white;

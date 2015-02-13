@@ -11,7 +11,7 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 
 
 */
-			
+
 if(!isset($_SESSION['id'])){ 
 	header("Location: signin.php"); 
 	}
@@ -57,7 +57,7 @@ if(!isset($_SESSION['id'])){
 	#loadwx{
 		max-width: 600px;
 		min-height:100%;
-		background-color: #333333;
+		background: linear-gradient(#333, #3f3f3f, #fff);
 		margin: 0 auto;
 		border:8px solid;
 		border-color: #33bbcc;
@@ -65,7 +65,7 @@ if(!isset($_SESSION['id'])){
 	#airportID{
 		margin-left:15px;
 		margin-bottom: 10px;
-		background-color: #333333;
+		background-color: transparent;
  		color: transparent;
 		text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
 	}
@@ -73,7 +73,7 @@ if(!isset($_SESSION['id'])){
 		max-width: 600px;
 		width:95%;
 		font-size: 10px;
-		background-color: #555555;
+		background: linear-gradient(#1B1B1B, #919191, #D8D8D8);
 		color:#ffffff;
 		font:sans-serif;
 		text-shadow: none;
@@ -116,6 +116,7 @@ if(!isset($_SESSION['id'])){
 	div.airportweather{
 		margin:7px;
 		padding: 3px;
+		background: linear-gradient(#575555, #5A5656, #353133);
 		border: 2px solid;
 		border-color: #333;
 		border-radius: 3px;

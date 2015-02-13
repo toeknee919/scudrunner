@@ -240,12 +240,15 @@
 					if(found[3] != null){
 						t = 0 - parseInt(found[4], 10);
 					}
-					// fixes dew
+					else{t = found[4];}
+					
+					// fixes dewpoint if negative
 					if(found[6] != null){
 						d = 0 - parseInt(found[7], 10);
 					}
+					else{d = found[7];}
 
-
+					
 					//if the diffeerence between temp/dew <= limit, highlight
 					if((t-d) <= Number(limit['temp_dew_spread'])){ 
 			      		string_in = string_in.replace(/\s((([M])?([0-9]{2}))\/(([M])?([0-9]{2}))(?=\s))/, " <b>" + found[1] + UNBOLD);
