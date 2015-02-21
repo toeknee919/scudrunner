@@ -40,6 +40,7 @@ if(!isset($_SESSION['id'])){
 	    max-width: 600px;
 	    background-color: #555555;
 	    margin: 0 auto;
+	    color:#555555;
 	}
 	h2{
 		color:#777777;
@@ -62,6 +63,7 @@ if(!isset($_SESSION['id'])){
 		background-color: transparent;
  		color: transparent;
 		text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
+		font-size: 16px;
 	}
 	#all, #lep{
 		max-width: 600px;
@@ -152,6 +154,7 @@ if(!isset($_SESSION['id'])){
 		padding: 7px;
 		border-radius: 3px;
 		box-shadow: 3px 3px 3px #333;
+		font-size: 16px;
 
 	}
 	textarea.ui-input-text{
@@ -175,6 +178,7 @@ if(!isset($_SESSION['id'])){
 	}
 	input[type=submit]{
 		color: black;
+		font-size: 16px;
 	}
 
 </style>
@@ -311,7 +315,7 @@ if(!isset($_SESSION['id'])){
 <!-- This is the form for getting a weather report-->
 <div id = "loadwx">
 	<div id="user">User: <?php echo $_SESSION['username'];?>
-			<input type="button" value="Account Settings" class="head-button" onclick="window.location.href='weax_database.php'"/>
+			<input type="button" value="Weather Settings" class="head-button" onclick="window.location.href='weax_database.php'"/>
 			<input type="button" value="Sign Out" class="head-button" onclick="window.location.href='signin.php'"/>
 	</div>
 	<h2>Scud Runner Weather</h2>

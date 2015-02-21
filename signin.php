@@ -50,7 +50,7 @@
 		#loginForm{
 			min-height:100%;
 			max-width: 600px;
-			font-size: 15px;
+			font-size: 16px;
 			background: linear-gradient(#c2c2c2, #d3d2d2, #8c8a8a);
 			color:#000000;
 			font:sans-serif;
@@ -76,6 +76,7 @@
 		input#username, input#password{
 			width:120px;
 			color:black;
+			font-size: 16px;
 		}
 		input[type=submit], input[type=button]{	
 			width:120px;
@@ -85,11 +86,14 @@
 			background-color: #33bbcc;	
 			height:26px;
 			margin-top: 5px;
+			font-size: 16px;
 		}
 		#create_user{
 			float: right;
 			width:125px;
-
+		}
+		#about_scud{
+			margin:10px;
 		}
 
 	</style>
@@ -131,6 +135,41 @@
 				<input type="button" id="create" value="Create Account" onclick="window.location.href='UserCreateForm.php'"/>
 			</div>
 			
+			<div id="about_scud">
+			<h4>About Scud Runner</h4>
+
+				<p>Scud runner is aimed to be a simple Mobile/Web tool for pilots and aviation personnel who are interested in
+					quickly getting the current conditions at an airport in the united states and various airports abroad.</p>
+
+				<p>This tool quickly returns Metars Tafs which we get fresh from the NOAA website every 5 minutes in addition to any report that someone has posted 
+					to this site regarding that airport. The most important part is that this application highlights conditions for the requester based on settings the user has
+					set up in their account settings. I have tried to address the most important conditions such as Temp/Dew spread, Visibility, Ceilings, Wind Speed, Precip,
+					and special airport conditions such as Peak Wind reports, RVR, etc. There are a good amount to choose from now, and more will be added.<p/>
+
+				<img src="screen.png" alt="NoImage">
+
+				<p> For instance, if you want to know anytime visibility at an airport is at or forecasted to be below 1 mile, the user can set it up to always let them know when visibility 
+				is at or below that level. This is meant to help you quickly see and avoid missing any conditions that may affect the flight. Even though our weather data does
+					come from the NOAA published weather databases,	this site is not meant to replace getting the required and approved weather reporting for your type of flight.
+					We are in no way approved in any way as a weather reporting source. I would however love to get to that point someday.</p> 
+
+				<h4>About The Developer</h4>
+
+				<p>I am a former Part 121 Dispatcher, Part 135 Flight Coordinator, and licensed pilot with a degree in Aeronautics from Embry-Riddle and another
+				 degree from Oregon State in Computer Science. I spent 8 years in aviation in various rolls and still have a strong passion for it, but recently found a 
+				 strong interest in Computers and development. I spent a few months developing how to go about making this page so that it would be useful mostly to pilots, but
+				 also benefit flight planners, dispatchers, etc.</p>
+
+				 <p>This site is new as of Feb 2015 and still has a lot of features I want to add to it. I will continue to slowly add features and please let me know what you think
+				 and what you want to see. I am hoping that Notams will be published electronically soon so I can add a similar to them as well. I hope you enjoy, please feel free to 
+				 contact me at toeknee919@gmail.com. I do have another job so time is limited but if you message me I will do my best to respond quickly.</p>
+
+
+			</div>
+
+
+
+
 	</div>
 </body>
 </html>
