@@ -6,14 +6,8 @@
 //			and then adds the user and their information to the database.
 
 if(isset($_POST['create'])){ 
- 	$dbHost = "localhost";   				//Location Of Database/localhost 
-   	$dbUser = "toeknee919";           		//Database User Name 
-    $dbPass = "portland";            		//Database Password 
-    $dbDatabase = "toeknee919";    			//Database Name 
-       
-       //Connect to the database 
-    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
-    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database.");
+	
+	include('dataControl/dbconnect.php');
  
  
 
@@ -92,7 +86,7 @@ if(isset($_POST['create'])){
 			printf("<html><body><script>window.location.href='signin.php'</script>"); // go to sign in
 			exit;	
 			}		
-}
+	}
 
 else{    //If the form button wasn't submitted go to the login page 
     header("Location: signin.php");     

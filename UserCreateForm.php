@@ -4,14 +4,7 @@
 // Purpose:	This file is used for setting the user up with an account.
 
 
- 	$dbHost = "localhost";   //Location Of Database/localhost 
-    $dbUser = "toeknee919";           		 //Database User Name 
-    $dbPass = "portland";            //Database Password 
-    $dbDatabase = "toeknee919";    			//Database Name 
-     
-    $db = mysql_connect($dbHost,$dbUser,$dbPass)or die("Error connecting to database."); 
-    //Connect to the database 
-    mysql_select_db($dbDatabase, $db)or die("Couldn't select the database.");
+include('dataControl/dbconnect.php');
 
 ?>
 
@@ -19,47 +12,61 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/> 
-<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.2.min.css" />
+<script type="text/javascript" src="javascript/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <title>Create Account</title>
 
 	<style>
 		
 		body{
-		    margin: 0;
-		    padding: 0;
+		    height: 100%;
+   			max-width: 600px;
+    		background-color: #555555;
+    		margin: 0 auto;
+    		border: 3px solid;
+			border-color: #33bbcc;
 		}
 
-		#headder,h1,h3{
-			color:#777777;
+		#headder{
+			background: linear-gradient(#333, #3f3f3f, #fff);
+			color:#33bbcc;
+			text-shadow:0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
 			text-align: center;
-			background-color: #333333;
-			text-shadow: none;
-			margin: 0;
-	    	padding: 0;
-	    	border: 0;
-		}
+			max-width: 600px;
+			height:100px;
 
+		}
+		h1,h3{
+			color:#33bbcc;
+			margin:0;
+			background: transparent;
+			text-align: center;
+			max-width: 600px;
+		}
 		#form1{
-			position: absolute;
-			min-height:100%;
-			min-width:100%;
+			max-width: 600px;
+			width:100%;
 			font-size: 15px;
 			display:inline-block;
-			background-color: #555555;
-			color:#ffffff;
+			background: linear-gradient(#ddd, #3f3f3f, #fff);
+			color:#000;
 			font:sans-serif;
 			text-shadow: none;
 			padding: 3px;
 		}
 		#form2{
-			margin-left:5px;
-			margin-right:15px;
-			background-color: #55555;
+			max-width: 600px;
+			width:100%;
+			font-size: 15px;
+			display:inline-block;
+			background: transparent;
+			color:#000;
+			font:sans-serif;
 			text-shadow: none;
-			width:70%;
-			max-width: 250px;
-
+			padding: 3px;
 		}
+		
 		#errr{
 			background-color: #ffffff;
 			color:#ff0000;
@@ -67,8 +74,6 @@
 
 	</style>
 
-<script type="text/javascript" src="javascript/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="javascript/jquery.mobile-1.3.2.min.js"></script>
 </head>
 
 <!-- form to create an account-->
@@ -81,7 +86,7 @@
 
 <div id="form1">
 <label for="form2">Please enter a username and password you would like to use.</label>
-Username and Password must be at least 6 characters.<br><br>
+<br>Username and Password must be at least 6 characters.<br><br>
 
 <!-- form to create an account-->
 <form action="createUser.php" method="post" name="form2" id="form2"> 
