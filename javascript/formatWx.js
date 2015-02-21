@@ -5,32 +5,6 @@
 	var UNBOLD = "</b>";
 	var NOBOLD = " <nob>";
 	var UNNOBOLD = "</nob>";
-	var cigLimit = 20;  //in hundres of feet  eg. 20 == 2000ft
-	var windLimit = 20; //speed in kts
-	var visLimit = 2.75; // distance in SM
-	var tempLimit = 10;
-	var dewPointLimit = 0;
-
-	//holds user settings
-	var W_set = {
-	//SKY CONDITIONS
-	'check_FEW' : 1, 'check_SCT' : 1, 'check_BKN' : 1, 'check_OVC' : 1, 'check_VV' : 1,
-	'check_Vceil' : 1,
-	//WINDS SET
-	'check_winds' : 1,'check_pkwinds' : 1,
-	//VISIBILITY SET
-	'check_visibility' : 1,'check_run_rvr' : 1,
-	//TEMP/DEWPOINT
-	'check_temp' : 1,'check_dewpoint' : 1,
-	//ALTEMETER
-	'check_alt' : 0,'check_PRES' : 1,
-	//METAR TIME
-	'check_met_time' : 0,'check_taf_time' : 0,'check_taf_vtime' : 0,
-	//CONDITIONS
-	'check_ltg' : 1,'check_cond' : 1
-
-	}
-
 
 
 	// formats the tafs by sections within each taf by FM.. PROB.. TEMPO...
@@ -134,16 +108,16 @@
 			    }
 			 }
 
-		//highlights winds if >= windLimid ***TODO: adjust for detecting gusts and wind/gust spread
+		//highlights winds if >= windLimid ***TODO: adjust for detecting gusts and wind/gust spread and windshifts
 		if(limit['wind_limit']){
 				var index;
-				var re =/(([0-9]{3}|VRB)([0-9]{2,3})(G([0-9]{2,3}))?KT)(?!<)/;
+				var re =/\s(([0-9]{3}|VRB)([0-9]{2,3})(G([0-9]{2,3}))?KT)(?!<)/;
 				while(found = string_in.match(re)){
 					if(found[3] >= Number(limit['wind_limit'])){ 
-			      		string_in = string_in.replace(/(([0-9]{3}|VRB)([0-9]{2,3})(G([0-9]{2,3}))?KT)(?!<)/, BOLD + found[1] + UNBOLD );
+			      		string_in = string_in.replace(/\s(([0-9]{3}|VRB)([0-9]{2,3})(G([0-9]{2,3}))?KT)(?!<)/, BOLD + found[1] + UNBOLD );
 			  			}
 			  		else{
-			  			string_in = string_in.replace(/(([0-9]{3}|VRB)([0-9]{2,3})(G([0-9]{2,3}))?KT)(?!<)/, NOBOLD + found[1] + UNNOBOLD );
+			  			string_in = string_in.replace(/\s(([0-9]{3}|VRB)([0-9]{2,3})(G([0-9]{2,3}))?KT)(?!<)/, NOBOLD + found[1] + UNNOBOLD );
 			  		}	
 			    }
 			 }
@@ -216,7 +190,7 @@
 			}
 
 		//bolds a RVR report
-		if(W_set.check_run_rvr){
+		if(1){
 				var index;
 				var re =/(R[0-9]{2}\w?\/(M|P)?([0-9]{4})V?P?([0-9]{4})?FT)\b/g;
 				var found = string_in.match(re);
@@ -229,7 +203,7 @@
 
 
 		//bolds if temp/dewpoint spread <= spreadLimit or if temp is above or below users set limits
-		if(W_set.check_temp){
+		if(1){
 				var re =/\s((([M])?([0-9]{2}))\/(([M])?([0-9]{2}))(?=\s))/;
 				//if set, then we dont need to re-bold the temperature
 				var isbolded = false;
@@ -268,26 +242,26 @@
 
 
 		//bolds a temp <= lowtemp or temp >= hightemp (always checked)
-		if(0){
-				var re =/(([M])?([0-9]{2}))(?=\/)/;
-				while(found = string_in.match(re)){
-					// in the case the temp is negative
-					if(found[2] != null){
-						found[3] = 0 - parseInt(found[3], 10);
-					}
-						if(found[3] <= Number(limit['l_temp'])){ 
-				      		string_in = string_in.replace(/(([M])?([0-9]{2}))(?=\/)/, BOLD + found[1] + UNBOLD );
-				  			}
-				  		else if(found[3] >= Number(limit['h_temp'])){ 
-				      		string_in = string_in.replace(/(([M])?([0-9]{2}))(?=\/)/, BOLD + found[1] + UNBOLD );
-				  			}
+		// if(0){
+		// 		var re =/(([M])?([0-9]{2}))(?=\/)/;
+		// 		while(found = string_in.match(re)){
+		// 			// in the case the temp is negative
+		// 			if(found[2] != null){
+		// 				found[3] = 0 - parseInt(found[3], 10);
+		// 			}
+		// 				if(found[3] <= Number(limit['l_temp'])){ 
+		// 		      		string_in = string_in.replace(/(([M])?([0-9]{2}))(?=\/)/, BOLD + found[1] + UNBOLD );
+		// 		  			}
+		// 		  		else if(found[3] >= Number(limit['h_temp'])){ 
+		// 		      		string_in = string_in.replace(/(([M])?([0-9]{2}))(?=\/)/, BOLD + found[1] + UNBOLD );
+		// 		  			}
 
-				  		else{
-				  			string_in = string_in.replace(/\s(([M])?([0-9]{2}))(?=\/)/, NOBOLD + found[1] + UNNOBOLD );
-				  		}	
-			       }
+		// 		  		else{
+		// 		  			string_in = string_in.replace(/\s(([M])?([0-9]{2}))(?=\/)/, NOBOLD + found[1] + UNNOBOLD );
+		// 		  		}	
+		// 	       }
 			       
-			   }
+		// 	   }
 
 
 
@@ -325,57 +299,96 @@
 			       }
 			   }
 
-		//TODO: set up for expiration times
-		if(W_set.check_met_time){
-				var index;
-				var temp;
-				var re =/(([A-Z0-9]{4})\s(([0-9]{2})([0-9]{4})Z)(?!\s[0-9]{4}\/))/g;
-				var found = string_in.match(re);
-				if(found){	
-					for(index = 0; index < found.length; ++index){
-				      string_in = string_in.replace(/(([A-Z0-9]{4})\s(([0-9]{2})([0-9]{4})Z)(?!\s[0-9]{4}\/)\s)/, BOLD + found[index] + UNBOLD +" ");
+		//Highlights any metar thats time is older that the users metar age setting
+		if(limit['metar_vtime']){
+
+				//get current epcoh time
+				var now = new Date();
+				var epoch_now = now.valueOf()/1000;
+
+				var expday = now.getUTCDate();
+				var hour = now.getUTCHours();
+				var minute = now.getUTCMinutes();
+								
+				var re =/(([A-Z0-9]{4})\s(([0-9]{2})([0-9]{2})([0-9]{2})Z))(?!<)(?!\s[0-9]{4}\/)/;
+				while(found = string_in.match(re)){	
+						
+						//get day,hor,min report made
+						met_dy = Number(found[4]);
+						met_hr = Number(found[5]);
+						met_mn = Number(found[6]);
+
+						//get metar epoch time
+						var met_epoch = Date.UTC(now.getFullYear(),now.getMonth(), met_dy, met_hr, met_mn).valueOf()/1000
+						
+						//console.log("now= " + epoch_now + " Metar epoch = " + met_epoch);
+						var valid_until = (parseFloat(limit['metar_vtime']) * 3600) + met_epoch;
+						
+						//highlight if older than user setting for how old a metar should be
+						if(epoch_now > valid_until){
+							string_in = string_in.replace(/(([A-Z0-9]{4})\s(([0-9]{2})([0-9]{2})([0-9]{2})Z))(?!<)(?!\s[0-9]{4}\/)/, BOLD + found[1] + UNBOLD +" ");		
+						}
+
+				     	else{
+				      		string_in = string_in.replace(/(([A-Z0-9]{4})\s(([0-9]{2})([0-9]{2})([0-9]{2})Z))(?!<)(?!\s[0-9]{4}\/)/, NOBOLD + found[1] + UNNOBOLD +" ");
 				  		}
-			       }
-			   }
-		//TODO: set up for expiration times
-		if(W_set.check_taf_time){
-				var index;
-				var re =/(TAF\s(AMD\s)?([A-Z0-9]{4})\s(([0-9]{2})([0-9]{4})Z))/g;
-				var found = string_in.match(re);
-				if(found){	
-					for(index = 0; index < found.length; ++index){
-				      string_in = string_in.replace(/(TAF\s(AMD\s)?([A-Z0-9]{4})\s(([0-9]{2})([0-9]{4})Z))(?!<)/, BOLD + found[index] + UNBOLD);
-				  		}
-			       }
+				  	}		       
 			   }
 
-		//TODO: set up for expiration times
-		if(W_set.check_taf_vtime){
-				var index;
-				var re =/((\b[0-9]{2})([0-9]{2})\/([0-9]{2})([0-9]{2}\b))/g;
-				var found = string_in.match(re);
-				if(found){	
-					for(index = 0; index < found.length; ++index){
-				      string_in = string_in.replace(/((\s[0-9]{2})([0-9]{2})\/([0-9]{2})([0-9]{2}\s))/, BOLD + found[index] + UNBOLD + " ");
+
+		//Highlights any taf thats valid time is older that the users taf age setting
+		if(limit['taf_vtime']){
+
+				//get current epcoh time
+				var now = new Date();
+				var epoch_now = now.valueOf()/1000;
+
+				var expday = now.getUTCDate();
+				var hour = now.getUTCHours();
+				var minute = now.getUTCMinutes();
+								
+				var re =/((TAF\s)?(AMD\s)?([A-Z0-9]{4})\s(([0-9]{2})([0-9]{2})([0-9]{2})Z)\s([0-9]{2})([0-9]{2})\/([0-9]{2})([0-9]{2}))(?!<)/;
+				while(found = string_in.match(re)){	
+						
+						//get day,hor,min report made
+						taf_dy = Number(found[9]);
+						taf_hr = Number(found[10]);
+						//taf_mn = Number(found[6]);
+
+						//get metar epoch time
+						var taf_epoch = Date.UTC(now.getFullYear(),now.getMonth(), taf_dy, taf_hr).valueOf()/1000
+						
+						
+						var valid_until = (parseFloat(limit['taf_vtime']) * 3600) + taf_epoch;
+						console.log("now= " + epoch_now + " TAF epoch = " + taf_epoch + "valid until = " + valid_until);
+						//highlight if older than user setting for how old a metar should be
+						if(epoch_now > valid_until){
+							string_in = string_in.replace(/((TAF\s)?(AMD\s)?([A-Z0-9]{4})\s(([0-9]{2})([0-9]{2})([0-9]{2})Z)\s([0-9]{2})([0-9]{2})\/([0-9]{2})([0-9]{2}))(?!<)/, BOLD + found[1] + UNBOLD +" ");		
+						}
+
+				     	else{
+				      		string_in = string_in.replace(/((TAF\s)?(AMD\s)?([A-Z0-9]{4})\s(([0-9]{2})([0-9]{2})([0-9]{2})Z)\s([0-9]{2})([0-9]{2})\/([0-9]{2})([0-9]{2}))(?!<)/, NOBOLD + found[1] + UNNOBOLD +" ");
 				  		}
-			       }
+				  	}		       
 			   }
+
+
 
 		//break this down
 		if(1){
 				var index;
-				var re = /(\s([\+\-]?)(VC)?(MI|RA|SN|BC|PR|TS|BL|SH|DR|FZ)?((DZ)|(RA)|(SN)|(RASNPL)|(RASN)|(SQ)|(IC)|(PE)|(BR)|(FG)|(FU)|(HZ)|(VA)|(DU)|(SA)|(DS)|(FC)|(MI)|(BC)|(DR)|(BL)|(TS)|(FZ)|(VC)|(SS)|(SG)|(SH)|(GR)|(GS)))(?=\s)/g;
+				var re = /(\s([\+\-]?)(VC)?(MI|RA|SN|BC|PR|TS|BL|SH|DR|FZ)?((DZ)|(RA)|(SN)|(DZSN)|(RASNPL)|(RASN)|(SQ)|(IC)|(PE)|(BR)|(FG)|(FU)|(HZ)|(VA)|(DU)|(SA)|(DS)|(FC)|(MI)|(BC)|(DR)|(BL)|(TS)|(FZ)|(VC)|(SS)|(SG)|(SH)|(GR)|(GS)))(?=\s)/g;
 				var found = string_in.match(re);
 				if(found){	
 					for(index = 0; index < found.length; ++index){
-				      string_in = string_in.replace(/(\s([\+\-]?)(VC)?(MI|SN|RA|BC|PR|TS|BL|SH|DR|FZ)?((DZ)|(RA)|(SN)|(RASN)|(RASNPL)|(SQ)|(IC)|(PE)|(BR)|(FG)|(FU)|(HZ)|(VA)|(DU)|(SA)|(DS)|(FC)|(MI)|(BC)|(DR)|(BL)|(TS)|(FZ)|(VC)|(SS)|(SG)|(SH)|(GR)|(GS)))(?:\s)/, BOLD + found[index] + UNBOLD + " ");
+				      string_in = string_in.replace(/(\s([\+\-]?)(VC)?(MI|SN|RA|BC|PR|TS|BL|SH|DR|FZ)?((DZ)|(RA)|(SN)|(DZSN)|(RASN)|(RASNPL)|(SQ)|(IC)|(PE)|(BR)|(FG)|(FU)|(HZ)|(VA)|(DU)|(SA)|(DS)|(FC)|(MI)|(BC)|(DR)|(BL)|(TS)|(FZ)|(VC)|(SS)|(SG)|(SH)|(GR)|(GS)))(?:\s)/, BOLD + found[index] + UNBOLD + " ");
 				  		}
 			       }
 			   }
 
-		// "BOLDED" string to return
-		return string_in;  
-		}
+	// "BOLDED" string to return
+	return string_in;  
+	}
 
 
 

@@ -196,7 +196,8 @@ if(!isset($_SESSION['id'])){
 		
 		//check if session started to reload the last weather requested (set inside displayApt.php)
 		var a = "<?php echo $_SESSION['apid'];?>";
-		if(a != null){
+		console.log(a);
+		if(a){
 			Airport(a);
 		}
 
