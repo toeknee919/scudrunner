@@ -356,7 +356,7 @@ if(!isset($_SESSION['id'])){
 	<div id="reportForm">
 	<form action="report_upload.php" method="POST" name="wx_report_form" id="wx_report_form"  enctype="multipart/form-data">
 		Airport ID: <input type="text" maxlength="4" name="apt_report_id" id="apt_report_id" /><br>
-		Airport Comments: <textarea cols="40" rows="8" name="textarea-1" id="textarea-1" ></textarea>
+		Airport Comments: <textarea cols="40" rows="8" name="textarea-1" id="textarea-1" maxlength="250" ></textarea>
 		<!--<br>Give us an image:<br><input type="file" name="pic" accept="image/*" ><br>-->
 		<input type="submit" name="submit_report" value="Submit Airport Report"/>
 	</form>

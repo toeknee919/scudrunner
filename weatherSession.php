@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
  
  
     $usr = mysql_real_escape_string($_POST['username']); 
-    $pas = ($_POST['password']); 
+    $pas =  mysql_real_escape_string($_POST['password']); 
     $sql = mysql_query("SELECT * FROM wx_user  
         WHERE username='$usr' AND 
         password='$pas' 

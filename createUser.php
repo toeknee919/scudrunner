@@ -18,9 +18,9 @@ if(isset($_POST['create'])){
  
 
     $usr = mysql_real_escape_string($_POST['CRname']); 
-    $pas = ($_POST['CRpassword']);
+    $pas =  mysql_real_escape_string($_POST['CRpassword']);
 	//$apt = strtoupper($_POST['homeApt']);
-	$email = $_POST['CRemail'];
+	$email =  mysql_real_escape_string($_POST['CRemail']);
 
 ///////////////////// Checks each entry meets criteria
 	if (!preg_match("/^[a-zA-Z0-9_]{6,}$/", $pas)) {

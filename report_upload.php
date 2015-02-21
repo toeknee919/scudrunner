@@ -21,7 +21,15 @@
     //if someone submits a report and no image
     if(isset($_POST['submit_report']) and $_POST['pic'] == null){
  			$ap_id = strtoupper($_POST['apt_report_id']);
-            $com = $_POST['textarea-1'];
+
+            //check that its a 4 letter identifier, exit if not
+            if(!preg_match("/^[a-zA-Z0-9_]{4}$/", $ap_id)){
+                printf("<html><body><script>window.location.href='new_wx.php'</script>"); // go to sign in
+                exit;
+                }
+
+            else{
+            $com =  mysql_real_escape_string($_POST['textarea-1']);
             $uid = $_SESSION['id'];
  	
                 //query for inserting comment with no image
@@ -38,5 +46,5 @@
                 }
 			} 
 
-
+        }
 ?>
