@@ -95,6 +95,9 @@
 		#about_scud{
 			margin:10px;
 		}
+		img {
+			width: 100%;
+		}
 
 	</style>
 
@@ -150,25 +153,23 @@
 
 				<p> For instance, if you want to know anytime visibility at an airport is at or forecasted to be below 1 mile, the user can set it up to always let them know when visibility 
 				is at or below that level. This is meant to help you quickly see and avoid missing any conditions that may affect the flight. Even though our weather data does
-					come from the NOAA published weather databases,	this site is not meant to replace getting the required and approved weather reporting for your type of flight.
-					We are in no way approved in any way as a weather reporting source. I would however love to get to that point someday.</p> 
+					come from the NOAA published weather databases,	this site is not meant to replace getting the required or approved weather reporting for your type of flight.
+					We are in no way approved as an official weather reporting source. More in the realm of a way of inhancing situational
+					awareness. I would however love to get to the approved point someday.</p> 
 
 				<h4>About The Developer</h4>
 
-				<p>I am a former Part 121 Dispatcher, Part 135 Flight Coordinator, and licensed pilot with a degree in Aeronautics from Embry-Riddle and another
+				<p>My name is Tony I am a former Part 121 Dispatcher, Part 135 Flight Coordinator, and licensed pilot with a degree in Aeronautics from Embry-Riddle and another
 				 degree from Oregon State in Computer Science. I spent 8 years in aviation in various rolls and still have a strong passion for it, but recently found a 
 				 strong interest in Computers and development. I spent a few months developing how to go about making this page so that it would be useful mostly to pilots, but
 				 also benefit flight planners, dispatchers, etc.</p>
 
 				 <p>This site is new as of Feb 2015 and still has a lot of features I want to add to it. I will continue to slowly add features and please let me know what you think
 				 and what you want to see. I am hoping that Notams will be published electronically soon so I can add a similar to them as well. I hope you enjoy, please feel free to 
-				 contact me at toeknee919@gmail.com. I do have another job so time is limited but if you message me I will do my best to respond quickly.</p>
+				 contact me at tony@thescudrunner.com. I do have another job and family so time is limited but if you message me I will do my best to respond quickly.</p>
 
 
 			</div>
-
-
-
 
 	</div>
 </body>
