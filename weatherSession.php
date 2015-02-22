@@ -11,7 +11,11 @@ if(isset($_POST['submit'])){
  
  
     $usr = mysql_real_escape_string($_POST['username']); 
-    $pas =  mysql_real_escape_string($_POST['password']); 
+    $pas =  mysql_real_escape_string($_POST['password']);
+
+    //hash the password and check
+    $pas = hash("sha256", $pas);
+
     $sql = mysql_query("SELECT * FROM wx_user  
         WHERE username='$usr' AND 
         password='$pas' 

@@ -44,7 +44,7 @@ if(!isset($_SESSION['id'])){
 	}
 	h2{
 		color:#777777;
-		text-shadow:0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
+		text-shadow:0px 1px 0px rgba(255,255,255,0), 0px 4px 15px rgba(0,0,0,1.7);
 		text-align: center;
 		max-width: 600px;
 		
@@ -52,10 +52,10 @@ if(!isset($_SESSION['id'])){
 	#loadwx{
 		max-width: 600px;
 		min-height:100%;
-		background: linear-gradient(#333, #3f3f3f, #fff);
+		background: linear-gradient(#4d4d4d, #3f3f3f, #7c7c7c);
 		margin: 0 auto;
 		border:8px solid;
-		border-color: #33bbcc;
+		border-color: #949494;
 	}
 	#airportID{
 		margin-left:15px;
@@ -74,8 +74,8 @@ if(!isset($_SESSION['id'])){
 		font:sans-serif;
 		text-shadow: none;
 		padding: 3px;
-		border:3px solid;
-		border-color: #33bbcc;
+		border:1px solid;
+		border-color: black;
 		border-radius: 3px;
 		margin: 0 auto;
 		margin-bottom: 5px;
@@ -90,7 +90,7 @@ if(!isset($_SESSION['id'])){
 		text-shadow: none;
 		padding: 3px;
 		border:1px solid;
-		border-color: #33bbcc;
+		border-color: black;
 		border-radius: 3px;
 		margin: 0 auto;
 		margin-bottom: 5px;
@@ -130,6 +130,7 @@ if(!isset($_SESSION['id'])){
 	#user{
 		text-shadow: none;
 		color:#ffffff;
+		background-color: #949494;
 	}
 	b{
 		color: #33bbcc;
@@ -150,11 +151,13 @@ if(!isset($_SESSION['id'])){
 	#reportForm{
 		max-width: 300px;
 		color:white;
-		margin:7px;
+		margin:15px;
 		padding: 7px;
 		border-radius: 3px;
 		box-shadow: 3px 3px 3px #333;
 		font-size: 16px;
+		border:1px solid;
+		border-color: #848484;
 
 	}
 	textarea.ui-input-text{
@@ -168,10 +171,7 @@ if(!isset($_SESSION['id'])){
 		color:black;
 		border-radius: 3px;
 	}
-	#user{
-		border:none;
-		background-color: #33bbcc;
-	}
+
 	input.head-button{
 		float:right;
 		height:20px;

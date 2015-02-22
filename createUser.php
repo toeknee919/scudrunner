@@ -16,6 +16,8 @@ if(isset($_POST['create'])){
 	//$apt = strtoupper($_POST['homeApt']);
 	$email =  mysql_real_escape_string($_POST['CRemail']);
 
+
+
 ///////////////////// Checks each entry meets criteria
 	if (!preg_match("/^[a-zA-Z0-9_]{6,}$/", $pas)) {
 		$_SESSION['errors'] = array("Your password did not meet the criteria."); 
@@ -47,10 +49,12 @@ if(isset($_POST['create'])){
         header("Location: UserCreateForm.php"); 
         exit; 
     } 
-
+    
+    //hash the password
+    $pas = hash("sha256", $pas);
 	
 	//inserts the name/pword and email into DB
-	$sql="INSERT INTO wx_user (username, password, email, total_visits) VALUES ('$_POST[CRname]','$_POST[CRpassword]','$_POST[CRemail]', 0)";
+	$sql="INSERT INTO wx_user (username, password, email, total_visits) VALUES ('$_POST[CRname]','$pas','$_POST[CRemail]', 0)";
 
 		if (!mysql_query($sql,$db)){
 		  die('Error1: ' . mysql_error()); }

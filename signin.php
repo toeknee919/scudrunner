@@ -27,21 +27,21 @@
     		background-color: #555555;
     		margin: 0 auto;
     		border: 3px solid;
-			border-color: #33bbcc;
+			border-color: #949494;
 		}
 
 		#headder{
-			background: linear-gradient(#333, #3f3f3f, #fff);
-			color:#33bbcc;
-			text-shadow:0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
+			background: linear-gradient(#4C4C4C, #3A3A3A, #4D4D4D);
+			color:#777777;
+			text-shadow:0px 1px 0px rgba(255,255,255,0), 0px 4px 15px rgba(0,0,0,1.7);
 			text-align: center;
 			max-width: 600px;
 			height:100px;
 
 		}
 		h1,h3{
-			color:#33bbcc;
-			margin:0;
+			color:#BDBDBD;
+			margin:4px;
 			background: transparent;
 			text-align: center;
 			max-width: 600px;
@@ -51,8 +51,8 @@
 			min-height:100%;
 			max-width: 600px;
 			font-size: 16px;
-			background: linear-gradient(#c2c2c2, #d3d2d2, #8c8a8a);
-			color:#000000;
+			background: linear-gradient(#646363, #7E7B7B, #8c8a8a);
+			color:#F5F5F5;
 			font:sans-serif;
 			text-shadow: none;
 		}
@@ -144,7 +144,7 @@
 				<p>Scud runner is aimed to be a simple Mobile/Web tool for pilots and aviation personnel who are interested in
 					quickly getting the current conditions at an airport in the united states and various airports abroad.</p>
 
-				<p>This tool quickly returns Metars Tafs which we get fresh from the NOAA website every 5 minutes in addition to any report that someone has posted 
+				<p>This tool quickly returns Metars an Tafs which we get fresh from the NOAA website every 5 minutes in addition to any report that someone has posted 
 					to this site regarding that airport. The most important part is that this application highlights conditions for the requester based on settings the user has
 					set up in their account settings. I have tried to address the most important conditions such as Temp/Dew spread, Visibility, Ceilings, Wind Speed, Precip,
 					and special airport conditions such as Peak Wind reports, RVR, etc. There are a good amount to choose from now, and more will be added.<p/>
