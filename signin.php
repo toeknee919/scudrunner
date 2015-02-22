@@ -134,7 +134,7 @@
 		</form>
 
 			<div id="create_user">
-	    		<label for="create">Sign Up for a <b>FREE</b> Account !!!<br></label>
+	    		<label for="create">Sign Up for a <b>FREE</b> Account<br></label>
 				<input type="button" id="create" value="Create Account" onclick="window.location.href='UserCreateForm.php'"/>
 			</div>
 			

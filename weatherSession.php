@@ -24,7 +24,13 @@ if(isset($_POST['submit'])){
         
 		$_SESSION['id'] = $row['id'];
         $_SESSION['username'] = $row['username']; 
-		$_SESSION['email'] = $row['email']; 		
+		$_SESSION['email'] = $row['email'];
+
+        //increment user visit count
+        mysql_query("UPDATE wx_user 
+                SET total_visits = total_visits + 1
+                WHERE id = '$_SESSION[id]'");
+
 		printf("<html><body><script>window.location.href='new_wx.php'</script>");  // go to the page
         exit; 
     }
