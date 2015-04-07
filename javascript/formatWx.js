@@ -280,14 +280,22 @@
 
 
 
-		if(rep['presrr']){
-			string_in = string_in.replace(/(PRESRR)/g, BOLD + "PRESRR" + UNBOLD);
+		if(rep['slpno']){
+			string_in = string_in.replace(/(SLPNO)/g, BOLD + "SLPNO" + UNBOLD);
 		}
-
-		if(rep['presfr']){
+		if(rep['rvrno']){
+			string_in = string_in.replace(/(RVRNO)/g, BOLD + "RVRNO" + UNBOLD);
+		}
+		if(rep['snincr']){
+			string_in = string_in.replace(/(SNINCR)/g, BOLD + "SNINCR" + UNBOLD);
+		}
+		if(rep['presrr']){
+			string_in = string_in.replace(/(ACFTMSHP)/g, BOLD + "ACFTMSHP" + UNBOLD);
+		}
+		if(rep['acftmshp']){
 			string_in = string_in.replace(/(PRESFR)/g, BOLD + "PRESFR" + UNBOLD);
 		}
-
+		
 		if(rep['ltg']){
 				var index;
 				var re =/((CONS\s)?(FRQ\s)?(OCNL\s)?(LTG)(\w+)?)/g;
@@ -298,6 +306,24 @@
 					    }
 			       }
 			   }
+
+
+		if(rep['fzrano']){
+			string_in = string_in.replace(/(FZRANO)/g, BOLD + "FZRANO" + UNBOLD);
+		}
+		if(rep['fropa']){
+			string_in = string_in.replace(/(FROPA)/g, BOLD + "FROPA" + UNBOLD);
+		}
+		if(rep['visno']){
+			string_in = string_in.replace(/(VISNO)/g, BOLD + "VISNO" + UNBOLD);
+		}
+
+		//add windshift report highlight
+
+		if(rep['tsno']){
+			string_in = string_in.replace(/(TSNO)/g, BOLD + "TSNO" + UNBOLD);
+		}
+
 
 		//Highlights any metar thats time is older that the users metar age setting
 		if(limit['metar_vtime']){
