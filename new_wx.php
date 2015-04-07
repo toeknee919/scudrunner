@@ -25,12 +25,13 @@ if(!isset($_SESSION['id'])){
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/> 
-       <!-- <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.2.min.css" /> -->
+       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" /> -->
        <script type="text/javascript" src="javascript/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="javascript/jquery.mobile-1.3.2.min.js"></script>
 		<script type="text/javascript" src="javascript/formatWx.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="javascript/bootstrap.min.js"></script>
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
 <title>Personal Weather Data</title>
 
 
@@ -65,7 +66,7 @@ if(!isset($_SESSION['id'])){
 		text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
 		font-size: 16px;
 	}
-	#all, #lep{
+	#all, #lep, #notams{
 		max-width: 600px;
 		width:95%;
 		font-size: 10px;
@@ -175,6 +176,8 @@ if(!isset($_SESSION['id'])){
 	input.head-button{
 		float:right;
 		height:20px;
+		width:75px;
+		margin-left:3px;
 	}
 	input[type=submit]{
 		color: black;
@@ -262,6 +265,30 @@ if(!isset($_SESSION['id'])){
 	          $('#test').html('Bummer: there was an error!');
 	      }
 	  });
+
+
+		$.ajax({
+	      url:'dataControl/notamreq.php',
+	      type: "GET",
+	      data: {'airport': t },
+	      complete: function (data) {
+	      	n = data.responseText;
+
+	        document.getElementById("notams").innerHTML = n;
+	        //$('#rep1').load(document.URL +  ' #rep1');
+	      },
+
+	      error: function () {
+	          $('#test').html('Bummer: there was an error!');
+	      }
+	  });
+
+
+
+
+
+
+
 		//clear text in textbox
 		$('#apt').val(''); 
 	}
@@ -314,17 +341,20 @@ if(!isset($_SESSION['id'])){
 	
 <!-- This is the form for getting a weather report-->
 <div id = "loadwx">
+	
 	<div id="user">User: <?php echo $_SESSION['username'];?>
-			<input type="button" value="Weather Settings" class="head-button" onclick="window.location.href='weax_database.php'"/>
+	
+			<input type="button" value="Settings" class="head-button" onclick="window.location.href='weax_database.php'"/>
 			<input type="button" value="Sign Out" class="head-button" onclick="window.location.href='signin.php'"/>
+			
 	</div>
 	<h2>Scud Runner Weather</h2>
 	
 	
 		<form id = "airportID" role="search">
-			<label>Airport ID:</label><br>
+			<label>Airport 4 letter ID:</label><br>
 			<span>
-				<input type="text" maxlength="4" name="apt" id="apt" />
+				<input type="text" maxlength="4" name="apt" id="apt"  />
 				<input type="button" id="sub" class="body-button" onclick="Airport(document.getElementById('apt').value)" value="Get Weather"/>
 			</span>
 		</form>
@@ -332,7 +362,7 @@ if(!isset($_SESSION['id'])){
 
 	<!--Displays the metar/tafs-->
 	<div id="all"></div>
-
+	<div id="notams"></div>
 	<!--Displays user reports for specified airport-->
 	<div id ="lep">
 		<div id = "rep"> 
