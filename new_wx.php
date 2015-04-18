@@ -50,6 +50,11 @@ if(!isset($_SESSION['id'])){
 		max-width: 600px;
 		
 	}
+	h4{
+		color:#33bbcc;
+		text-align: center;
+		margin-bottom: 0px;
+	}
 	#loadwx{
 		max-width: 600px;
 		min-height:100%;
@@ -66,11 +71,26 @@ if(!isset($_SESSION['id'])){
 		text-shadow: 0px 2px 3px rgba(255,255,255,0.5);
 		font-size: 16px;
 	}
-	#all, #lep, #notams{
+	#all, #lep{
 		max-width: 600px;
 		width:95%;
 		font-size: 10px;
 		background: linear-gradient(#1B1B1B, #919191, #D8D8D8);
+		color:#ffffff;
+		font:sans-serif;
+		text-shadow: none;
+		padding: 3px;
+		border:1px solid;
+		border-color: black;
+		border-radius: 3px;
+		margin: 0 auto;
+		margin-bottom: 5px;
+	}
+	#notams{
+		max-width: 600px;
+		width:95%;
+		font-size: 10px;
+		background: #1B1B1B;
 		color:#ffffff;
 		font:sans-serif;
 		text-shadow: none;
@@ -204,6 +224,9 @@ if(!isset($_SESSION['id'])){
 
 		//load the default page
 		else{
+			document.getElementById("metar-label").innerHTML = "Metars and TAFs For Major Hubs";
+			document.getElementById("notam-label").innerHTML = "";
+			document.getElementById("notams").innerHTML = "";
 		var all;
 	   $.ajax({
 	      url:'dataControl/display2.php',
@@ -236,7 +259,6 @@ if(!isset($_SESSION['id'])){
 	//used to get weather from another airport
 	//*******************************************************************
 	function Airport(t){
-
 		$.ajax({
 	      url:'dataControl/displayApt.php',
 	      type: "GET",
@@ -266,6 +288,10 @@ if(!isset($_SESSION['id'])){
 	      }
 	  });
 
+			document.getElementById("metar-label").innerHTML = "Metars and TAFs For " + t.toUpperCase();
+			document.getElementById("notam-label").innerHTML = "Notams For " + t.toUpperCase();
+			document.getElementById("notams").innerHTML = "Loading Notams";
+
 
 		$.ajax({
 	      url:'dataControl/notamreq.php',
@@ -273,9 +299,7 @@ if(!isset($_SESSION['id'])){
 	      data: {'airport': t },
 	      complete: function (data) {
 	      	n = data.responseText;
-
 	        document.getElementById("notams").innerHTML = n;
-	        //$('#rep1').load(document.URL +  ' #rep1');
 	      },
 
 	      error: function () {
@@ -283,39 +307,8 @@ if(!isset($_SESSION['id'])){
 	      }
 	  });
 
-
-
-
-
-
-
-		//clear text in textbox
 		$('#apt').val(''); 
 	}
-	
-
-
-
-	//*******************************************************************
-	//used for generating form to submit an airport report
-	//*******************************************************************
-/*	function generate_report_form(){
-			//clear the field
-			document.getElementById("reportForm").innerHTML = "";
-
-			//build the form
-		 	$("#reportForm").append('<form name="wx_report_form" id="wx_report_form" action=".php" method="POST" data-role="none" enctype="multipart/form-data">');
-  			$("#reportForm").append('Airport ID: ');
-  			$("#reportForm").append('<input type="text" maxlength="4" name="apt_report_id" id="apt_report_id" /><br>');
-  			$("#reportForm").append('Airport Comments:');
-   			$("#reportForm").append('<textarea cols="40" rows="8" name="textarea-1" id="textarea-1" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"></textarea>');
-   			$("#reportForm").append('<br>Give us an image:<br><input type="file" name="pic" accept="image/*" data-role="none"><br>');
-   			$("#reportForm").append('<br><input type="submit" name="submit_report" value="Submit Airport Report" data-inline="true" data-mini="true"/></form>');
-   			$("#reportForm").trigger("create");
-   			window.scrollTo(0, document.body.scrollHeight);
-
-	}*/
-
 
 	//*******************************************************************
 	//controls input in the airport input box.. If enter pressed, 
@@ -361,8 +354,11 @@ if(!isset($_SESSION['id'])){
 
 
 	<!--Displays the metar/tafs-->
+	<h4 id="metar-label"></h4>
 	<div id="all"></div>
-	<div id="notams"></div>
+
+	<h4 id="notam-label"></h4>
+	<div id="notams">Loading</div>
 	<!--Displays user reports for specified airport-->
 	<div id ="lep">
 		<div id = "rep"> 
