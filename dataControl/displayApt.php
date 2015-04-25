@@ -14,13 +14,13 @@ $id = $_GET['airport'];
 //set the session variable for keeping the current airport id
 $_SESSION['apid'] = strtoupper($id);
 date_default_timezone_set('UTC');
-$output .= "Weather Loaded-" . date ('m/d/y H:i') . " GMT<br><br>";
+$output .= "Weather Loaded-" . date ('m/d/y H:i') . "z<br><br>";
 
 //prints each airprot in the $homeid array
 //foreach($apt as $id){
 	//search the csv file for each current metar
 	$string = "python csvSearch.py ". $id;
-	$output .= "<div class=\"airportweather\">";
+	$output .= "<div>";
 	$output .= shell_exec($string . " metars");
 
 	//search the csv file for each current taf
