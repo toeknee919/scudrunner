@@ -212,45 +212,15 @@ Purpose: 	This is the main page for testing the weather bolding features. It cal
 	window.onload = function(){
 		
 		//check if session started to reload the last weather requested (set inside displayApt.php)
-		var a = "<?php echo $_SESSION['apid'];?>";
-		console.log(a);
+		var a = "<?php echo $_SESSION['home_apt'];?>";
 		if(a){
 			Airport(a);
 		}
-
-		//load the default page
 		else{
-			document.getElementById("metar-label").innerHTML = "Metars and TAFs For Major Hubs";
-			document.getElementById("notam-label").innerHTML = "";
-			document.getElementById("notams").innerHTML = "";
-			var all;
-			$.ajax({
-				url:'dataControl/display2.php',
-				type: "GET",
-				complete: function (data) {
-					all = data.responseText;
-					all = format_wx(all);
-
-	          //gets user weather highlight settings 
-	          var wx_lim = <?php $a = mysql_query("SELECT * FROM wx_limitations WHERE id = '$_SESSION[id]'");
-	          while($row = mysql_fetch_array($a)){
-	          	echo json_encode($row);
-	          };?>;
-	          var apt_rep = <?php $a = mysql_query("SELECT * FROM spec_apt_reports WHERE id = '$_SESSION[id]'");
-	          while($row = mysql_fetch_array($a)){
-	          	echo json_encode($row);
-	          };?>;
-
-	          all = boldline(all, wx_lim, apt_rep);
-	          document.getElementById("all").innerHTML = all;	
-	      },
-	      error: function () {
-	      	$('#all').html('Bummer: there was an error!');
-	      }
-	  });
+			console.log("Home airport not found, home value = " + a);					
 		}
-
 	}
+
 	//*******************************************************************
 	//used to get weather from another airport
 	//*******************************************************************

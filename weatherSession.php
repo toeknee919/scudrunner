@@ -29,6 +29,7 @@ if(isset($_POST['submit'])){
         $_SESSION['id'] = $row['id'];
         $_SESSION['username'] = $row['username']; 
         $_SESSION['email'] = $row['email'];
+        $_SESSION['home_apt'] = $row['home_apt'];
 
         //increment user visit count
         mysql_query("UPDATE wx_user 
