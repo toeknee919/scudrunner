@@ -257,10 +257,7 @@ include('dataControl/dbconnect.php');
 				<!--<img src="screen.png" alt="NoImage">-->
 
 				<p> For instance, if you want to know anytime visibility at an airport is at or forecasted to be below 1 mile, the user can set it up to always let them know when visibility 
-					is at or below that level. This is meant to help you quickly see and avoid missing any conditions that may affect the flight. Even though our weather data does
-					come from the NOAA published weather databases,	this site is not meant to replace getting the required or approved weather reporting for your type of flight.
-					We are in no way approved as an official weather reporting source. More in the realm of a way of inhancing situational
-					awareness. I would however love to get to the approved point someday.</p> 
+					is at or below that level. This is meant to help you quickly see and avoid missing any conditions that may affect the flight.</p> 
 
 					<h4>About The Developer</h4>
 

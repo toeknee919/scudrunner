@@ -89,14 +89,15 @@ include('dataControl/dbconnect.php');
 <br>Username and Password must be at least 6 characters.<br><br>
 
 <!-- form to create an account-->
-<form action="createUser.php" method="post" name="form2" id="form2"> 
+<form action="createUser.php" method="post" name="form2" id="form2" class ="form-group"> 
 		<label for="CRname">Username:</label>
-		<input type="text" name="CRname" id="CRname" data-mini="true" data-inline="true"><br>
+		<input type="text" name="CRname" id="CRname" data-mini="true" data-inline="true" class="form-control"><br>
 		<label for="CRpassword">Password:</label>
-		<input type="text" name="CRpassword" id="CRpassword" data-mini="true" data-inline="true"><br>
+		<input type="text" name="CRpassword" id="CRpassword" data-mini="true" data-inline="true" class="form-control"><br>
 		<label for="CRemail">Email:</label>
-		<input type="text" name="CRemail" id="CRemail" data-mini="true" data-inline="true"><br><br>
-
+		<input type="text" name="CRemail" id="CRemail" data-mini="true" data-inline="true" class="form-control"><br>
+		<label for="CRemail">Home Airport 4 Letter Identifier:</label><br>
+		<input type="text" name="CRairport" id="CRairport" maxlength="4" data-mini="true" data-inline="true" class="form-control"><br><br>
 
 
 		<div id = "errr">
