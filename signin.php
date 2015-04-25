@@ -238,10 +238,6 @@ include('dataControl/dbconnect.php');
 	<div id="all"></div>
 
 
-
-
-
-
 	<div id="about_scud">
 		<h4>About Scud Runner</h4>
 

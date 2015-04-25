@@ -13,19 +13,18 @@ if(isset($_POST['create'])){
 
     $usr = mysql_real_escape_string($_POST['CRname']); 
     $pas =  mysql_real_escape_string($_POST['CRpassword']);
-	//$apt = strtoupper($_POST['homeApt']);
+	$apt = strtoupper($_POST['CRairport']);
 	$email =  mysql_real_escape_string($_POST['CRemail']);
 
 
 
 ///////////////////// Checks each entry meets criteria
-	if (!preg_match("/^[a-zA-Z0-9_]{6,}$/", $pas)) {
+	if (!preg_match("/^[a-zA-Z0-9+.*]{6,}$/", $pas)) {
 		$_SESSION['errors'] = array("Your password did not meet the criteria."); 
 		header("Location: UserCreateForm.php"); // go to try again
 		exit;
 	} 
-	
-	
+		
 	if (!preg_match("/^[a-zA-Z0-9_]{6,}$/", $usr)) {
 		$_SESSION['errors'] = array("Your username did not meet the criteria of 6 or more letters or numbers."); 
 		header("Location: UserCreateForm.php"); // go to try again
@@ -37,6 +36,11 @@ if(isset($_POST['create'])){
 		header("Location: UserCreateForm.php"); // go to try again
 		exit;
 	}
+	if (!preg_match("/^[a-zA-Z0-9]{4}$/", $apt)) {
+		$_SESSION['errors'] = array("Airport needs to be a 4 letter identifier."); 
+		header("Location: UserCreateForm.php"); // go to try again
+		exit;
+	} 
 ////////////////////
 
 
@@ -54,7 +58,7 @@ if(isset($_POST['create'])){
     $pas = hash("sha256", $pas);
 	
 	//inserts the name/pword and email into DB
-	$sql="INSERT INTO wx_user (username, password, email, total_visits) VALUES ('$_POST[CRname]','$pas','$_POST[CRemail]', 0)";
+	$sql="INSERT INTO wx_user (username, password, email, total_visits, home_apt) VALUES ('$_POST[CRname]','$pas','$_POST[CRemail]', 0, '$apt')";
 
 		if (!mysql_query($sql,$db)){
 		  die('Error1: ' . mysql_error()); }

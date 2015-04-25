@@ -96,7 +96,7 @@ include('dataControl/dbconnect.php');
 		<input type="text" name="CRpassword" id="CRpassword" data-mini="true" data-inline="true" class="form-control"><br>
 		<label for="CRemail">Email:</label>
 		<input type="text" name="CRemail" id="CRemail" data-mini="true" data-inline="true" class="form-control"><br>
-		<label for="CRemail">Home Airport 4 Letter Identifier:</label><br>
+		<label for="CRairport">Home Airport 4 Letter Identifier:</label><br>
 		<input type="text" name="CRairport" id="CRairport" maxlength="4" data-mini="true" data-inline="true" class="form-control"><br><br>
 
 
