@@ -13,8 +13,7 @@ include('dataControl/dbconnect.php');
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/> 
 <script type="text/javascript" src="javascript/jquery-1.11.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <title>Create Account</title>
 
 	<style>
