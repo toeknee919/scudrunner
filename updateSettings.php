@@ -35,6 +35,8 @@ if(isset($_POST['updateSettings'])){
     $c12 = ($_POST['checkbox-12'] == on ? 1 : 0);
     $c13 = ($_POST['checkbox-13'] == on ? 1 : 0);
 
+    $apt = $_POST['home_id'];
+
     // update the limitations table		
 	$sql = mysql_query("UPDATE wx_limitations SET visibility='$s1',
                                                     ceilings='$s2',
@@ -66,7 +68,15 @@ if(isset($_POST['updateSettings'])){
                                                     pk_wnd='$c13' WHERE id = '$_SESSION[id]'");
 
     if(!$sql){
-        echo "Query to limitations failed";
+        echo "Query to spec_apt_reports failed";
+    }
+
+    //update the home airport for the user
+    $sql = mysql_query("UPDATE wx_user SET home_apt = '$apt'
+                                            WHERE id = '$_SESSION[id]'");
+
+    if(!$sql){
+        echo "Query to home_apt failed";
     }
 	
     // back to the metar report page	

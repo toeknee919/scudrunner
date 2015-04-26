@@ -71,6 +71,11 @@ include('dataControl/dbconnect.php');
 
 	// loads the airport reports radio buttons for the user
 	load_apt_reports();
+
+	// loads the current home airport for the user
+	load_home_apt();
+
+
 }
 
 //***********************************************************************
@@ -79,9 +84,9 @@ include('dataControl/dbconnect.php');
 function load_Limitations(){
 
 	var json_obj = <?php $a = mysql_query("SELECT * FROM wx_limitations WHERE id = '$_SESSION[id]'");
-	while($row = mysql_fetch_array($a)){
-		echo json_encode($row);
-	};?>;
+						while($row = mysql_fetch_array($a)){
+							echo json_encode($row);
+						};?>;
 	
 	var count = Object.keys(json_obj).length;							
 	count = (count/2) - 1;	
@@ -101,9 +106,9 @@ function load_Limitations(){
 function load_apt_reports(){
 
 	var json_obj = <?php $a = mysql_query("SELECT * FROM spec_apt_reports WHERE id = '$_SESSION[id]'");
-	while($row = mysql_fetch_array($a)){
-		echo json_encode($row);
-	};?>;
+						while($row = mysql_fetch_array($a)){
+							echo json_encode($row);
+						};?>;
 	
 	var count = Object.keys(json_obj).length;						
 	count = (count/2) - 1;	
@@ -114,6 +119,19 @@ function load_apt_reports(){
 			$(elmt).attr("checked",true).checkboxradio("refresh");
 		}
 	}
+}
+
+//***********************************************************************
+// this function set the home airport field to the current location
+//************************************************************************
+function load_home_apt(){
+
+	var json_obj = <?php $a = mysql_query("SELECT * FROM wx_user WHERE id = '$_SESSION[id]'");
+						while($row = mysql_fetch_array($a)){
+							echo json_encode($row);
+						};?>;
+	var airport = json_obj["home_apt"];
+	$('#home_id').val(airport);
 }
 
 </script>	
@@ -203,6 +221,9 @@ function load_apt_reports(){
 				<input type="checkbox" name="checkbox-13" id="checkbox-13" class="custom" data-mini="true" />
 				<label for="checkbox-13">PK WND (Peak Wind Report)</label>
 			</fieldset>
+			<!--update the home airport-->
+			<label for="checkbox-13">Home Airport 4 Letter Identifier</label>
+			<input type="text" maxlength="4" name="home_id" id="home_id" /><br>
 
 			<br>CURRENTLY ALL PRECIPITATION REPORTED SHOULD BE HIGHLIGHTED<BR>
 			<!--precip settings will go here-->
