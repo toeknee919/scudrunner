@@ -11,6 +11,8 @@ include('dataControl/dbconnect.php');
 <html>
 <head>
 	<meta charset="utf-8"/>
+	<meta name="description" content="Airport Metar and TAF highlighter where each user specifies their own settings. Notams are also reported once you sign in. Great for situational awareness and training tool for pilots and aviation personnel." />
+	<meta name="keywords" content="weather, airport, metar, forecast, TAF, highlighter, highlight, Mobile, App, Free, pilot, pilots, scud runner, thescudrunner, the scud runner, notams, decoder" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
 	<script type="text/javascript" src="javascript/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="javascript/formatWx.js"></script>
@@ -224,7 +226,6 @@ include('dataControl/dbconnect.php');
 	
 	<!--metar/taf request-->
 	<form id = "airportID" role="search">
-		<p id="explination">Weather reports below will be highlighted using general settings including precipitation, low ceilings, low visibility, and special airport conditions.</p>
 		<label>Airport 4 letter ID:</label><br>
 		<span>
 			<input type="text" maxlength="4" name="apt" id="apt"  />
@@ -235,7 +236,7 @@ include('dataControl/dbconnect.php');
 
 	<!--Displays the metar/tafs-->
 	<h4 id="metar-label"></h4>
-	<div id="all"></div>
+	<div id="all">Highlighted Metars and TAFs will show up here using general settings including precipitation, low ceilings, low visibility, and special airport conditions.</div>
 
 
 	<div id="about_scud">
