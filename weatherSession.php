@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $pas = hash("sha256", $pas);
 
     $sql = mysql_query("SELECT * FROM wx_user  
-        WHERE username='$usr' AND 
+        WHERE BINARY username='$usr' AND 
         password='$pas' 
         LIMIT 1"); 
     

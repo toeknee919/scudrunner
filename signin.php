@@ -11,7 +11,7 @@ include('dataControl/dbconnect.php');
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<meta name="description" content="Airport Metar and TAF highlighter where each user specifies their own settings. Notams are also reported once you sign in. Great for situational awareness and training tool for pilots and aviation personnel." />
+	<meta name="description" content="Airport Metar and TAF highlighter. Each user can specify their own settings. Notams are also reported once you sign in. Great situational awareness and training tool for aviation personnel." />
 	<meta name="keywords" content="weather, airport, metar, forecast, TAF, highlighter, highlight, Mobile, App, Free, pilot, pilots, scud runner, thescudrunner, the scud runner, notams, decoder" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"/> 
 	<script type="text/javascript" src="javascript/jquery-1.11.0.min.js"></script>
@@ -19,7 +19,7 @@ include('dataControl/dbconnect.php');
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
 
-	<title>Sign In</title>
+	<title>Airport Metar and TAF Highlighter</title>
 
 
 	<style>
